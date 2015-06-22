@@ -21,6 +21,8 @@ surface.CreateFont("aesp_font", {
 ]])
 end )
 
+local ESP_d = CreateClientConVar("esp_d", "999999", true, false)
+
 function AdminESP(ply)
 ply:SendLua([[
 local function DrawText(strText, oCol, iXPos, iYPos)
@@ -40,14 +42,24 @@ local function DrawAdminESP()
       local Pos = (v:GetPos() + Vector(0, 0, 50)):ToScreen()
        			DrawText("Name: "..v:Nick(),             team.GetColor(v:Team()),   Pos.x, Pos.y + 13 * 0)
         		DrawText("SteamID: "..v:SteamID(),       Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 1)
-        		--DrawText("Ping: "..v:Ping(),             Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 2)
-        		DrawText("Health: "..v:Health(),         Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 3)
-         		DrawText("Armor: "..v:Armor(),           Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 4)
-        		DrawText("Usergroup: "..v:GetNWString("usergroup"), Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 5)
-        		DrawText("Job: "..team.GetName(v:Team()), Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 6)
-          if isfunction(v.getDarkRPVar) then
-        		DrawText("$"..v:getDarkRPVar("money"), Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 7)
-          end
+        		if AESP.Config["ShowPing"] then
+        			DrawText("Ping: "..v:Ping(),             Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 2)
+        		end
+        		if AESP.Config["ShowHealth"] then
+        			DrawText("Health: "..v:Health(),         Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 3)
+        		end
+        		if AESP.Config["ShowArmor"] then
+         			DrawText("Armor: "..v:Armor(),           Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 4)
+         		end
+         		if AESP.Config["ShowGroup"] then
+        			DrawText("Usergroup: "..v:GetNWString("usergroup"), Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 5)
+        		end
+        		if AESP.Config["ShowJob"] then
+        			DrawText("Job: "..team.GetName(v:Team()), Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 6)
+        		end
+        		if AESP.Config["ShowMoney"] then
+        			DrawText("$"..v:getDarkRPVar("money"), Color(255, 255, 255, 255), Pos.x, Pos.y + 13 * 7)
+        		end
       end
     end
 end
