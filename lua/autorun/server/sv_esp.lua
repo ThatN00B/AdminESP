@@ -1,5 +1,7 @@
 if !SERVER then return end
 
+include("config.lua")
+
 print("Admin ESP loaded, type esp_help for information on how to use this script.")
 
 hook.Add("PlayerInitialSpawn", "AdminESP_SendFont", function(ply)
