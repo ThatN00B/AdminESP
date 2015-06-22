@@ -5,5 +5,5 @@ AESP.Config = AESP.Config or {
      ShowArmor = true,
      ShowGroup = true,
      ShowJob = true,
-     ShowMoney = true, -- Only set to true if using DarkRP
+     ShowMoney = false, -- Only set to true if using DarkRP
 }
